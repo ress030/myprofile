@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Aku — Restu</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#10151b;
+      --text:#e7f5ef;
+      --muted:#8fb7a6;
+      --accent:#00ff88;
+      --accent-soft:#00ff8833;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:system-ui,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      /* background bintang animasi */
+      background:
+        radial-gradient(1px 1px at 20% 30%, #fff2 40%, transparent 41%) repeat,
+        radial-gradient(1px 1px at 70% 60%, #fff2 40%, transparent 41%) repeat,
+        linear-gradient(180deg, #0b0f14 0%, #0b1218 100%);
+      background-size:200px 200px, 220px 220px, auto;
+      animation: stars 60s linear infinite;
+    }
+
+    /* Animasi bintang */
+    @keyframes stars {
+      0% { background-position:0 0,0 0,0 0; }
+      100% { background-position:200px 200px,-220px -220px,0 0; }
+    }
+
+    header{
+      text-align:center;
+      padding:50px 20px 30px;
+      animation: fadeUp 1s ease forwards;
+      opacity:0;
+    }
+    header img{
+      width:150px;height:150px;border-radius:50%;
+      border:4px solid var(--accent);
+      box-shadow:0 0 20px var(--accent-soft);
+      margin-bottom:15px;
+    }
+    header h1{font-size:32px;margin:10px 0;}
+    header p{color:var(--muted)}
+
+    nav{
+      display:flex;justify-content:center;gap:15px;
+      background:#1118;backdrop-filter:blur(6px);
+      padding:12px;
+      position:sticky;top:0;z-index:10;
+      animation: fadeUp 1.5s ease forwards;
+      opacity:0;
+    }
+    nav a{
+      color:var(--text);text-decoration:none;
+      padding:8px 14px;border:1px solid #223;
+      border-radius:20px;transition:.3s;
+    }
+    nav a:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+
+    main{max-width:900px;margin:30px auto;padding:0 16px;}
+    .card{
+      background:linear-gradient(180deg,#0f141a,#0c1116);
+      border:1px solid #1e2a33;border-radius:14px;
+      padding:20px;margin-bottom:20px;
+      box-shadow:0 8px 20px #0007;
+      animation: fadeUp 2s ease forwards;
+      opacity:0;
+    }
+
+    h2{margin-bottom:10px;color:var(--accent)}
+    p,li{line-height:1.6}
+
+    footer{
+      text-align:center;padding:20px;
+      color:var(--muted);border-top:1px solid #1a222b;
+      animation: fadeUp 2.5s ease forwards;
+      opacity:0;
+    }
+
+    /* Animasi Fade-up */
+    @keyframes fadeUp {
+      0% {opacity:0; transform:translateY(40px);}
+      100% {opacity:1; transform:translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="foto.jpg" alt="Foto Profil">
+    <h1>Restu Mulia Raharja</h1>
+    <p>Pelajar • Suka Menggambar • Belajar C & HTML</p>
+  </header>
+
+  <nav>
+    <a href="#tentang">Tentang</a>
+    <a href="#hobi">Hobi</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <main>
+    <section id="tentang" class="card">
+      <h2>Tentang Aku</h2>
+      <p>Halo! Aku Restu, pelajar yang lagi fokus belajar pemrograman C & HTML. Aku suka nge-build hal kecil yang simple tapi rapi, sambil terus upgrade skill.</p>
+    </section>
+
+    <section id="hobi" class="card">
+      <h2>Hobi</h2>
+      <ul>
+        <li>🎨 Menggambar</li>
+        <li>🎮 Main Game</li>
+        <li>🥋 Olahraga</li>
+        <li>💻 Coding</li>
+      </ul>
+    </section>
+
+    <section id="kontak" class="card">
+      <h2>Kontak</h2>
+      <p>Email: <a href="mailto:resturaharja82@gmail.com">resturaharja82@gmail.com</a></p>
+      <p>Instagram: <a href="https://instagram.com/ress_030" target="_blank">@ress_030</a></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Restu Mulia Raharja ✦ Dibuat dengan ❤
+  </footer>
+
+</body>
+</html>

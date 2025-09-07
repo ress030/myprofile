@@ -1,0 +1,16 @@
+.avatar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: auto;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+  z-index: 9999;
+}
+
+.avatar img {
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
