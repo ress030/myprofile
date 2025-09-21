@@ -7,11 +7,10 @@
   <style>
     :root {
       --bg: #0b0f14;
-      --panel: rgba(16, 21, 27, 0.7);
+      --panel: rgba(16, 21, 27, 0.6);
       --text: #e7f5ef;
-      --muted: #8fb7a6;
       --accent: #00ff88;
-      --accent-soft: #00ff8833;
+      --accent-soft: #00ff8844;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -24,7 +23,7 @@
       align-items: center;
       padding: 20px;
     }
-    /* Kartu biodata */
+    /* ===== Kartu Biodata ===== */
     .biodata {
       text-align: center;
       margin-bottom: 30px;
@@ -33,25 +32,19 @@
       border-radius: 16px;
       background: var(--panel);
       backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.45);
       max-width: 400px;
       width: 100%;
       transition: transform 0.3s ease;
     }
-    .biodata:hover {
-      transform: scale(1.02);
-    }
+    .biodata:hover { transform: scale(1.02); }
     .biodata h1 {
       color: var(--accent);
       margin-bottom: 10px;
       font-size: 1.8rem;
     }
-    .biodata p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: var(--text);
-    }
-    /* Tombol menu */
+    .biodata p { font-size: 1rem; line-height: 1.5; }
+    /* ===== Tombol Menu ===== */
     .btn-group {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -78,11 +71,11 @@
       box-shadow: 0 0 20px var(--accent-soft);
       transform: translateY(-2px);
     }
-    /* Konten fullscreen */
+    /* ===== Fullscreen Konten ===== */
     .fullscreen-content {
       position: fixed;
       inset: 0;
-      background: rgba(16, 21, 27, 0.95);
+      background: rgba(16, 21, 27, 0.92);
       backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
@@ -106,8 +99,8 @@
       margin-bottom: 20px;
       text-align: center;
       opacity: 0;
-      transform: translateY(20px) scale(0.97);
-      transition: all 0.5s ease;
+      transform: translateY(30px) scale(0.97);
+      transition: all 0.6s ease;
     }
     .content-slide.active {
       opacity: 1;
@@ -116,7 +109,7 @@
     .content-slide h2 {
       color: var(--accent);
       margin-bottom: 20px;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
     .content-slide ul {
       list-style: none;
@@ -129,7 +122,7 @@
       content: "• ";
       color: var(--accent);
     }
-    /* Tombol close */
+    /* ===== Tombol Close ===== */
     .close-btn {
       position: fixed;
       top: 20px;
@@ -150,7 +143,7 @@
       color: var(--bg);
       box-shadow: 0 0 20px var(--accent-soft);
     }
-    /* Responsif untuk HP */
+    /* ===== Responsif HP ===== */
     @media (max-width: 600px) {
       .biodata h1 { font-size: 1.4rem; }
       .btn-group { grid-template-columns: 1fr; }
@@ -159,11 +152,13 @@
   </style>
 </head>
 <body>
+  <!-- Biodata -->
   <div class="biodata" id="biodata">
     <h1>Restu Mulia Raharja</h1>
     <p>Nama: Restu<br />Umur: 16 tahun<br />Sekolah: SMKN 1 Sumedang<br />Kelas: XI TKJ 2</p>
   </div>
 
+  <!-- Menu -->
   <div class="btn-group" id="btnGroup">
     <button data-target="intro">Introduction</button>
     <button data-target="tentang">Tentang</button>
@@ -172,6 +167,7 @@
     <button data-target="kontak">Kontak</button>
   </div>
 
+  <!-- Konten fullscreen -->
   <div class="fullscreen-content" id="fullscreenContent">
     <button class="close-btn" id="closeBtn">× Tutup</button>
   </div>
@@ -180,20 +176,21 @@
     const buttons = document.querySelectorAll('.btn-group button');
     const fullscreen = document.getElementById('fullscreenContent');
     const closeBtn = document.getElementById('closeBtn');
-    const biodata = document.getElementById('biodata');
-    const btnGroup = document.getElementById('btnGroup');
+    let currentKey = null;
+    const keys = ['intro', 'tentang', 'hobi', 'cita', 'kontak'];
 
     const contents = {
       intro: `<div class="content-slide"><h2>Introduction</h2><p>Halo! Saya <strong>Restu Mulia Raharja</strong>, pelajar SMKN 1 Sumedang jurusan TKJ kelas XI TKJ 2. Saya suka belajar pemrograman & networking.</p></div>`,
-      tentang: `<div class="content-slide"><h2>Tentang Aku</h2><p>Aku Restu, pelajar yang sedang fokus belajar Javascript & HTML. Aku suka membuat hal-hal sederhana tapi rapi.</p></div>`,
+      tentang: `<div class="content-slide"><h2>Tentang Aku</h2><p>Aku Restu, pelajar yang sedang fokus belajar Javascript & HTML. Aku suka membuat hal-hal sederhana tapi rapi.</p><p>Kelebihan: cepat beradaptasi, skill pemrograman & networking.<br>Kekurangan: kadang kurang disiplin & mudah emosi.</p></div>`,
       hobi: `<div class="content-slide"><h2>Hobi & Soft Skill</h2><ul><li>🥋 Olahraga</li><li>💻 Coding</li><li>🌐 Networking</li></ul></div>`,
-      cita: `<div class="content-slide"><h2>Cita-cita & Karir</h2><p>Cita-citaku menjadi profesional di bidang IT, khususnya jaringan komputer dan keamanan siber.</p></div>`,
+      cita: `<div class="content-slide"><h2>Cita-cita & Karir</h2><p>Cita-citaku menjadi profesional di bidang IT, khususnya jaringan komputer & keamanan siber. Aku ingin terus belajar, ambil sertifikasi, dan ikut proyek IT.</p></div>`,
       kontak: `<div class="content-slide"><h2>Kontak</h2><p>Email: <a href="mailto:resturaharja82@gmail.com" style="color:var(--accent)">resturaharja82@gmail.com</a></p><p>Instagram: <a href="https://instagram.com/ress_030" target="_blank" style="color:var(--accent)">@ress_030</a></p></div>`
     };
 
     function showContent(key) {
       fullscreen.innerHTML = `<button class="close-btn" id="closeBtn">× Tutup</button>` + (contents[key] || "");
       fullscreen.classList.add('active');
+      currentKey = key;
       setTimeout(() => {
         fullscreen.querySelector('.content-slide').classList.add('active');
       }, 50);
@@ -202,7 +199,39 @@
 
     function closeFullscreen() {
       fullscreen.classList.remove('active');
+      currentKey = null;
     }
+
+    // Navigasi keyboard (← →)
+    document.addEventListener('keydown', e => {
+      if (!currentKey) return;
+      let idx = keys.indexOf(currentKey);
+      if (e.key === 'ArrowRight') {
+        idx = (idx + 1) % keys.length;
+        showContent(keys[idx]);
+      } else if (e.key === 'ArrowLeft') {
+        idx = (idx - 1 + keys.length) % keys.length;
+        showContent(keys[idx]);
+      } else if (e.key === 'Escape') {
+        closeFullscreen();
+      }
+    });
+
+    // Swipe gesture (HP)
+    let startX = 0;
+    fullscreen.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    fullscreen.addEventListener('touchend', e => {
+      if (!currentKey) return;
+      const endX = e.changedTouches[0].clientX;
+      let idx = keys.indexOf(currentKey);
+      if (startX - endX > 50) { // geser kiri
+        idx = (idx + 1) % keys.length;
+        showContent(keys[idx]);
+      } else if (endX - startX > 50) { // geser kanan
+        idx = (idx - 1 + keys.length) % keys.length;
+        showContent(keys[idx]);
+      }
+    });
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
