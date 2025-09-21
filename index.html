@@ -7,255 +7,209 @@
   <style>
     :root {
       --bg: #0b0f14;
-      --panel: #10151b;
+      --panel: rgba(16, 21, 27, 0.7);
       --text: #e7f5ef;
       --muted: #8fb7a6;
       --accent: #00ff88;
       --accent-soft: #00ff8833;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: system-ui, Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      overflow-x: hidden;
-      background: 
-        radial-gradient(1px 1px at 20% 30%, #fff2 40%, transparent 41%) repeat,
-        radial-gradient(1px 1px at 70% 60%, #fff2 40%, transparent 41%) repeat,
-        linear-gradient(180deg, #0b0f14 0%, #0b1218 100%);
-      background-size: 200px 200px, 220px 220px, auto;
-      animation: stars 60s linear infinite;
-    }
-    @keyframes stars {
-      0% {
-        background-position: 0 0, 0 0, 0 0;
-      }
-      100% {
-        background-position: 200px 200px, -220px -220px, 0 0;
-      }
-    }
-    header {
-      text-align: center;
-      padding: 50px 20px 30px;
-      animation: fadeUp 1s ease forwards;
-      opacity: 0;
-    }
-    header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid var(--accent);
-      box-shadow: 0 0 20px var(--accent-soft);
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
-    header h1 {
-      font-size: 32px;
-      margin: 10px 0;
-    }
-    header p {
-      color: var(--muted);
-      font-style: italic;
-    }
-    nav {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      background: #1118;
-      backdrop-filter: blur(6px);
-      padding: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      animation: fadeUp 1.5s ease forwards;
-      opacity: 0;
-    }
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      padding: 8px 14px;
-      border: 1px solid #223;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-soft);
-    }
-    nav a.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-soft);
-      font-weight: bold;
-    }
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 16px;
-    }
-    .card {
-      background: linear-gradient(180deg, #0f141a, #0c1116);
-      border: 1px solid #1e2a33;
-      border-radius: 14px;
+      flex-direction: column;
+      align-items: center;
       padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px #0007;
-      animation: fadeUp 2s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
-    p,
-    li {
-      line-height: 1.6;
-    }
-    footer {
+    /* Kartu biodata */
+    .biodata {
       text-align: center;
-      padding: 20px;
-      color: var(--muted);
-      border-top: 1px solid #1a222b;
-      animation: fadeUp 2.5s ease forwards;
-      opacity: 0;
+      margin-bottom: 30px;
+      border: 1.5px solid var(--accent);
+      padding: 25px 20px;
+      border-radius: 16px;
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s ease;
     }
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .biodata:hover {
+      transform: scale(1.02);
+    }
+    .biodata h1 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+    .biodata p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    /* Tombol menu */
+    .btn-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+    .btn-group button {
+      background: var(--panel);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    }
+    .btn-group button:hover,
+    .btn-group button.active {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 20px var(--accent-soft);
+      transform: translateY(-2px);
+    }
+    /* Konten fullscreen */
+    .fullscreen-content {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 21, 27, 0.95);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      overflow-y: auto;
+      z-index: 2000;
+    }
+    .fullscreen-content.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .content-slide {
+      max-width: 700px;
+      line-height: 1.6;
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.5s ease;
+    }
+    .content-slide.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .content-slide h2 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    .content-slide ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 20px;
+      max-width: 400px;
+      text-align: left;
+    }
+    .content-slide ul li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+    /* Tombol close */
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--panel);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--accent-soft);
+      transition: all 0.3s;
+      z-index: 2100;
+    }
+    .close-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 20px var(--accent-soft);
+    }
+    /* Responsif untuk HP */
+    @media (max-width: 600px) {
+      .biodata h1 { font-size: 1.4rem; }
+      .btn-group { grid-template-columns: 1fr; }
+      .content-slide { font-size: 1rem; padding: 10px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="fileprofile.jpeg" alt="Foto Profil" />
+  <div class="biodata" id="biodata">
     <h1>Restu Mulia Raharja</h1>
-    <p>Pelajar • Networking • Belajar Javascript & HTML</p>
-  </header>
+    <p>Nama: Restu<br />Umur: 16 tahun<br />Sekolah: SMKN 1 Sumedang<br />Kelas: XI TKJ 2</p>
+  </div>
 
-  <nav>
-    <a href="#introduction" class="active">Introduction</a>
-    <a href="#tentang">Tentang</a>
-    <a href="#hobi&softskill">Hobi & soft skill</a>
-    <a href="#Cita-cita&Rencanakarir">Cita-cita & Rencana karir</a>
-    <a href="#kontak">Kontak</a>
-  </nav>
+  <div class="btn-group" id="btnGroup">
+    <button data-target="intro">Introduction</button>
+    <button data-target="tentang">Tentang</button>
+    <button data-target="hobi">Hobi & Soft Skill</button>
+    <button data-target="cita">Cita-cita & Karir</button>
+    <button data-target="kontak">Kontak</button>
+  </div>
 
-  <main>
-    <section id="introduction" class="card visible">
-      <h2>Introduction</h2>
-      <p>
-        Halo Perkenalkan nama saya <strong>Restu Mulia Raharja</strong>, saya umur 16 tahun, saya pelajar dari <strong>SMKN 1 Sumedang</strong> Jurusan saya <strong>TKJ (Teknik Komputer Jaringan)</strong> saya kelas 11 TKJ 2.Saya Beragama Islam, Saya anak kedua dari 3 bersaudara, saya lahir di Depok pada tanggal 28 Desember 2008. Saya dibesarkan di Sumedang saat saya waktu umur kurang lebih sekitar 2 tahun.
-      </p>
-    </section>
-
-    <section id="tentang" class="card">
-      <h2>Tentang Aku</h2>
-      <p>Halo! Aku Restu, pelajar yang lagi fokus belajar pemrograman Javascript & HTML. Aku suka nge-build hal kecil yang simple tapi rapi, sambil terus upgrade skill.</p>
-      <p>MBTI ku itu INTP atau ENTJ dari MBTI tersebut memiliki keunikan masing-masing.</p>
-      <p></p>
-      <h3>Kelebihan</h3>
-      <p>
-        Kelebihan ku bisa beradaptasi, saya memiliki kelebihan di bidang komputer yaitu pemrograman dan networking, saya juga memiliki kemampuan di bidang olahraga yaitu karate, dan saya memiliki kemampuan softskill yaitu publik speaking.
-      </p>
-      <h3>Kekurangan</h3>
-      <p>
-        Kekurangan saya yaitu hanya kurang disiplin dan kurang responsif apabila saya sedang tidak mood serta terkadang menjadi tempramental jika sedang emosi.
-      </p>
-    </section>
-
-    <section id="hobi&softskill" class="card">
-      <h2>Hobi</h2>
-      <ul>
-        <li>🥋 Olahraga</li>
-        <li>💻 Coding</li>
-        <li>🌐 Networking</li>
-      </ul>
-    </section>
-
-    <section id="kontak" class="card">
-      <h2>Kontak</h2>
-      <p>Email: <a href="mailto:resturaharja82@gmail.com">resturaharja82@gmail.com</a></p>
-      <p>Instagram: <a href="https://instagram.com/ress_030" target="_blank" rel="noopener">@ress_030</a></p>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Restu Mulia Raharja ✦ Dibuat dengan ❤
-  </footer>
+  <div class="fullscreen-content" id="fullscreenContent">
+    <button class="close-btn" id="closeBtn">× Tutup</button>
+  </div>
 
   <script>
-    // Smooth scroll untuk link navigasi
-    document.querySelectorAll('nav a').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          window.scrollTo({
-            top: targetSection.offsetTop - 60,
-            behavior: 'smooth',
-          });
-        }
+    const buttons = document.querySelectorAll('.btn-group button');
+    const fullscreen = document.getElementById('fullscreenContent');
+    const closeBtn = document.getElementById('closeBtn');
+    const biodata = document.getElementById('biodata');
+    const btnGroup = document.getElementById('btnGroup');
+
+    const contents = {
+      intro: `<div class="content-slide"><h2>Introduction</h2><p>Halo! Saya <strong>Restu Mulia Raharja</strong>, pelajar SMKN 1 Sumedang jurusan TKJ kelas XI TKJ 2. Saya suka belajar pemrograman & networking.</p></div>`,
+      tentang: `<div class="content-slide"><h2>Tentang Aku</h2><p>Aku Restu, pelajar yang sedang fokus belajar Javascript & HTML. Aku suka membuat hal-hal sederhana tapi rapi.</p></div>`,
+      hobi: `<div class="content-slide"><h2>Hobi & Soft Skill</h2><ul><li>🥋 Olahraga</li><li>💻 Coding</li><li>🌐 Networking</li></ul></div>`,
+      cita: `<div class="content-slide"><h2>Cita-cita & Karir</h2><p>Cita-citaku menjadi profesional di bidang IT, khususnya jaringan komputer dan keamanan siber.</p></div>`,
+      kontak: `<div class="content-slide"><h2>Kontak</h2><p>Email: <a href="mailto:resturaharja82@gmail.com" style="color:var(--accent)">resturaharja82@gmail.com</a></p><p>Instagram: <a href="https://instagram.com/ress_030" target="_blank" style="color:var(--accent)">@ress_030</a></p></div>`
+    };
+
+    function showContent(key) {
+      fullscreen.innerHTML = `<button class="close-btn" id="closeBtn">× Tutup</button>` + (contents[key] || "");
+      fullscreen.classList.add('active');
+      setTimeout(() => {
+        fullscreen.querySelector('.content-slide').classList.add('active');
+      }, 50);
+      document.getElementById('closeBtn').onclick = closeFullscreen;
+    }
+
+    function closeFullscreen() {
+      fullscreen.classList.remove('active');
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showContent(btn.dataset.target);
       });
     });
-
-    // Highlight menu aktif saat scroll
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('nav a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 70;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Animasi fade-up saat scroll ke section
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll('.card').forEach((card) => {
-      if (!card.classList.contains('visible')) {
-        observer.observe(card);
-      }
-    });
+    closeBtn.addEventListener('click', closeFullscreen);
   </script>
 </body>
 </html>
